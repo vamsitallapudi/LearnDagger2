@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
 import java.io.File
+import javax.inject.Named
 
 @Module(includes = [ContextModule::class])
 class NetworkModule {
@@ -31,7 +32,7 @@ class NetworkModule {
 
     @Provides
     @GithubApplicationScope
-    fun cacheFile(context: Context): File {
+    fun cacheFile(@ApplicationContext context: Context): File {
         val cacheFile = File(context.cacheDir,"okhttp_cache")
         cacheFile.mkdirs()
         return cacheFile

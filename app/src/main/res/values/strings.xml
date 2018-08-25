@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LearnDagger2</string>
+    <string name="last_pushed">Last Pushed %s</string>
 </resources>

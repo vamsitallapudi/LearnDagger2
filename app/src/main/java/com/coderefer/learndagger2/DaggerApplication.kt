@@ -1,13 +1,15 @@
 package com.coderefer.learndagger2
 
+import android.app.Activity
 import android.app.Application
 import timber.log.Timber
 
 class DaggerApplication : Application() {
+    private lateinit var githubApplicationComponent: GithubApplicationComponent
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        val githubApplicationComponent = DaggerGithubApplicationComponent.builder()
+        githubApplicationComponent = DaggerGithubApplicationComponent.builder()
                 .contextModule(ContextModule(this))
                 .build()
 
@@ -24,5 +26,16 @@ class DaggerApplication : Application() {
         Timber.tag("Dagger2 ").i("picasso2:$picasso2")
         Timber.tag("Dagger2 ").i("githubservice3:$githubService3")
         Timber.tag("Dagger2 ").i("picasso3:$picasso3")
+    }
+
+    fun applicationComponent():GithubApplicationComponent {
+        return githubApplicationComponent
+    }
+
+
+    companion object {
+        fun get(activity: Activity): DaggerApplication {
+            return activity.application as DaggerApplication
+        }
     }
 }
