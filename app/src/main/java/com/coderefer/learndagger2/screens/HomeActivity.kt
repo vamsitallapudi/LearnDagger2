@@ -16,6 +16,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var adapterRepos: AdapterRepos
     @Inject
     lateinit var githubService:GithubService
+    @Inject
     lateinit var picasso: Picasso
 
     override fun onCreate(savedInstanceState: Bundle?) {
